@@ -1,0 +1,10 @@
+<%= content_for :title do %>
+    Main - MiBlog
+<% end %>
+
+<% @posts.each do |post| %>
+    <h2 class="post_title"><%= post.title %></h2>
+    <div class="post_content">
+      <%= post.content %>
+    </div>
+<% end %>
