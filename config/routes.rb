@@ -55,4 +55,6 @@ MiBlog::Application.routes.draw do
   #   end
 
   root :to => "posts#index"
+
+  resources :posts # Define route for post
 end

@@ -51,10 +51,13 @@ end
 gem "therubyracer"
 gem "less-rails"
 gem "twitter-bootstrap-rails"
-
+gem 'protected_attributes'  # To attr_accessible problems
 
 group :test do
-  gem 'capybara'
+  gem 'capybara','1.1.2' # stable version (for selector? error)
+  gem 'factory_girl_rails'
+  gem 'faker'
+  gem 'launchy'
 end
 
 
