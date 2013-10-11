@@ -59,8 +59,31 @@ describe "Posts pages" do
           should have_selector ".post_content", :text => post.content
         end
       end
-
     end
+
+    #context "Listing last 3 posts" do
+
+      #let!(:older_posts) { FactoryGirl.create_list(:post, 2, :created_at => 3.months.ago )}
+
+      #before do
+        #visit root_path
+        #click_link "Last 3 Posts"
+      #end
+
+      #it "should contain the 3 newer posts" do
+        #posts.each do |post|
+          #should have_selector ".post_title", :text => post.title
+          #should have_selector ".post_content", :text => post.content
+        #end
+      #end
+
+      #it "should not contain that 2 older posts" do
+        #older_posts.each do |post|
+          #should_not have_selector ".post_title", :text => post.title
+          #should_not have_selector ".post_content", :text => post.content
+        #end
+      #end
+    #end
 
   end
 
@@ -102,6 +125,79 @@ describe "Posts pages" do
       it "should alerts us about our error" do
         should have_content "The post doesn't exist."
       end
+    end
+
+    describe "Comments" do
+
+      context "comments list" do
+
+        #let!(:comments) { FactoryGirl.create_list(:comment, 5) }
+        let!(:comments) { FactoryGirl.create_list(:comment, 5, :post => post) }
+
+        before do
+          visit post_path post
+        end
+
+        it "should have a list of comments" do
+          comments.each do |comment|
+            should have_content comment.author
+            should have_content comment.content
+          end
+        end
+      end
+
+      context "Creating comments" do
+
+        context "with valid data"  do
+
+          before do
+            visit post_path post
+            fill_in "Author", :with => "fhantoing"
+            fill_in "Content", :with => "This article is very good, so complete!"
+            click_button "Post"
+          end
+
+          it "should put a new comment on the page" do
+            should have_content "fhantoing"
+            should have_content "This article is very good, so complete!"
+          end
+
+          it "should put a success message on the top" do
+            should have_content "Comment created successfully."
+          end
+        end
+
+        context "with invalid data" do
+
+          before do
+            visit post_path post
+            click_button "Post"
+          end
+
+          it "should put an error message on the top" do
+            should have_content "Comment needs an author and content."
+          end
+        end
+      end
+
+      context "Creating comments via ajax", :js => true do
+
+        context "with valid data" do
+
+          before do
+            visit post_path post
+            fill_in "Author", :with => "fhantoing"
+            fill_in "Content", :with => "This article is very good, so complete"
+            click_button "Post"
+          end
+
+          it "should put a new comment on the page" do
+            should have_content "fhantoing"
+            should have_content "This article is very good, so complete"
+          end
+        end
+      end
+
     end
 
   end

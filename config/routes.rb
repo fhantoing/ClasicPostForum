@@ -56,5 +56,8 @@ MiBlog::Application.routes.draw do
 
   root :to => "posts#index"
 
-  resources :posts # Define route for post
+  resources :posts do # Define route for post
+     resources :comments  #Define route for post/comments
+     #get 'last/:num' => "posts#last", as: 'last'
+  end
 end

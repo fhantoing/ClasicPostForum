@@ -40,5 +40,11 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
-  config.include Capybara::DSL    # <=> Add for resolve visit root_path error
+  config.include Capybara::DSL    # for resolve visit root_path error
+
+  ActiveRecord::ConnectionAdapters::ConnectionPool.class_eval do   #One thread for all specs and specs with ajax
+    def current_connection_id
+    Thread.main.object_id
+    end
+  end
 end
