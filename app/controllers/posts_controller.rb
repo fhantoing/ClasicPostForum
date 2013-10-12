@@ -19,7 +19,9 @@ class PostsController < ApplicationController
   end
 
   def last
+
     @posts = Post.newer_posts(params[:num])
+
   end
 
 end
