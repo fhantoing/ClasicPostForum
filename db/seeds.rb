@@ -8,14 +8,6 @@
 
 require 'faker'
 
-#Post.create!(:title => "BDD and specs Rails", :content => Faker::Lorem.paragraphs(2))
-#Post.create!(:title => "Scrum BDD integration", :content => Faker::Lorem.paragraphs(2))
-#post = Post.create!(:title => "Behavior-driven-development for experts", :content => Faker::Lorem.paragraphs(2))
-
-#post.comments.create!(:author => "sinourain", :content => "Ok, it´s so complete!")
-#post.comments.create!(:author => "alberto", :content => "shall continue")
-#post.comments.create!(:author => "jazmin", :content => "This article is good")
-
 #Option one
 
 #Post.create(content: 'BDD content', title: 'BDD and specs')

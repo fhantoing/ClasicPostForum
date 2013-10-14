@@ -61,29 +61,29 @@ describe "Posts pages" do
       end
     end
 
-    #context "Listing last 3 posts" do
+    context "Listing last 3 posts" do
 
-      #let!(:older_posts) { FactoryGirl.create_list(:post, 2, :created_at => 3.months.ago )}
+      let!(:older_posts) { FactoryGirl.create_list(:post, 2, :created_at => 3.months.ago )}
 
-      #before do
-        #visit root_path
-        #click_link "Last 3 Posts"
-      #end
+      before do
+        visit root_path
+        click_link "Last 3 Posts"
+      end
 
-      #it "should contain the 3 newer posts" do
-        #posts.each do |post|
-          #should have_selector ".post_title", :text => post.title
-          #should have_selector ".post_content", :text => post.content
-        #end
-      #end
+      it "should contain the 3 newer posts" do
+        posts.each do |post|
+          should have_selector ".post_title", :text => post.title
+          should have_selector ".post_content", :text => post.content
+        end
+      end
 
-      #it "should not contain that 2 older posts" do
-        #older_posts.each do |post|
-          #should_not have_selector ".post_title", :text => post.title
-          #should_not have_selector ".post_content", :text => post.content
-        #end
-      #end
-    #end
+      it "should not contain that 2 older posts" do
+        older_posts.each do |post|
+          should_not have_selector ".post_title", :text => post.title
+          should_not have_selector ".post_content", :text => post.content
+        end
+      end
+    end
 
   end
 

@@ -46,10 +46,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">MiBlog</a>
+          <a class="brand" href="/posts">MiBlog</a>
           <div class="container nav-collapse">
             <ul class="nav">
-              <li><%= link_to "Link1", "/path1"  %></li>
+              <li><%= link_to "Last 3 Posts", last_posts_path(3)  %></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -60,7 +60,6 @@
       </br></br>
         <div class="row">
           <div class="span9">
-            <% bootstrap_flash %>
             <% flash.each do |key, value| %>    <%#	too change  <%= bootstrap_flash %>
                 <div class="flash alert alert-<%= key %>">
                   <%= value %>
