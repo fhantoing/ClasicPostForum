@@ -1,11 +1,10 @@
 FactoryGirl.define do
 
   factory :post do
-    #title "A post title"
-    #content "Post content"
     sequence(:title) { |n| "Post number #{n}" }
     content { Faker::Lorem.paragraphs(2).to_s }
-  end
+    author {Faker::Internet.user_name }
+    end
 
   factory :comment do
     author { Faker::Internet.user_name }

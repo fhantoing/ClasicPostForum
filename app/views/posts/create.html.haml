@@ -1,0 +1,12 @@
+%h3 Public an new Post
+= form_for @post do |f|
+  %p
+    = f.label :title
+    = f.text_field :title
+  %p
+    = f.label :content
+    = f.text_area :content
+  %p
+    = f.label :author
+    = f.text_field :author
+  = f.submit "Public post"

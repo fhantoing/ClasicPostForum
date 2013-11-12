@@ -5,14 +5,6 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(params[:comment])
 
-    #if @comment.save
-      #flash[:success] = "Comment created successfully."
-      #redirect_to @post
-    #else
-        #flash[:error] = "Comment needs an author and content."
-        #render 'posts/show'
-    #end
-
     respond_to do |format|
         if @comment.save
           format.html {

@@ -6,55 +6,56 @@ describe "Posts pages" do
 
   subject { page }
 
-  describe "Home page" do
+  describe "Create post page" do
+
+    context "Creating an new Post" do
+
+      context "with valid data"  do
+
+        before do
+          visit public_post_path
+          fill_in "Title", :with => "My First Post"
+          fill_in "Content", :with => "This article talks about the creation of the first post"
+          fill_in "Author", :with => "fhantoing"
+          click_button "Public post"
+
+        end
+
+        it "should create a new post on the page" do
+          should have_content "My First Post"
+          should have_content "This article talks about the creation of the first post"
+          should have_content "fhantoing"
+        end
+
+        it "should put a success message on the top" do
+          should have_content "Post created successfully."
+        end
+      end
+
+      context "with invalid data" do
+
+        before do
+          visit public_post_path
+          click_button "Public post"
+        end
+
+        it "should put an error message on the top" do
+          should have_content "Post title, content and author are required."
+        end
+      end
+    end
+  end
+
+  describe "Default page" do
 
     context "Listing all posts" do
-
-      #let!(:post1) { Post.create!(:title => "Post 1", :content => "Post number one") }
-      #let!(:post2) { Post.create!(:title => "Post 2", :content => "Post number two") }
-      #let!(:post3) { Post.create!(:title => "Post 3", :content => "Post number three") }
-      #let(:posts) { Post.all}
-
-      #let!(:post1) { FactoryGirl.create(:post) }
-      #let!(:post2) { FactoryGirl.create(:post) }
-      #let!(:post3) { FactoryGirl.create(:post) }
-      #let(:posts) { Post.all }
-
-      #let!(:posts) { FactoryGirl.create_list(:post, 3) }
 
       before do
         visit root_path
       end
 
-      #it "should list all available posts titles" do
-          #visit root_path
-          #posts = Post.all
-          #posts.each do |post|
-            #page.should have_content post.title
-          #end
-      #end
-
-
-      #it "should list all available posts contents" do
-          #visit root_path
-          #posts = Post.all
-          #posts.each do |post|
-            #page.should have_content post.content
-          #end
-      #end
-
-      #it "should list all available posts" do
-        #posts.each do |post|
-          #page.should have_content post.title
-          #page.should have_content post.content
-        #end
-      #end
-
       it "should list all available posts" do
         posts.each do |post|
-          #page.should have_selector ".post_title", :text => post.title
-          #page.should have_selector ".post_content", :text => post.content
-
           should have_selector ".post_title", :text => post.title
           should have_selector ".post_content", :text => post.content
         end
@@ -67,7 +68,7 @@ describe "Posts pages" do
 
       before do
         visit root_path
-        click_link "Last 3 Posts"
+        click_link "View the last 3 Posts created"
       end
 
       it "should contain the 3 newer posts" do
@@ -93,9 +94,6 @@ describe "Posts pages" do
 
     context "valid post" do
 
-      #let!(:posts) { FactoryGirl.create_list(:post, 3) }
-      #let!(:post) { posts.first }
-
       before do
         visit root_path
         click_link post.title
@@ -105,10 +103,11 @@ describe "Posts pages" do
       it "should have post info" do
         should have_content post.title
         should have_content post.content
+        should have_content post.author
       end
 
       it "should be on the post page" do
-        should have_selector "title", :text => "#{post.title} - MiBlog"
+        should have_selector "title", :text => "#{post.title}"
       end
     end
 
@@ -119,7 +118,7 @@ describe "Posts pages" do
       end
 
       it "should redirect to home page" do
-        should have_selector "title", :text => "Main - MiBlog"
+        should have_selector "title", :text => "Main - Posts"
       end
 
       it "should alerts us about our error" do
@@ -131,7 +130,6 @@ describe "Posts pages" do
 
       context "comments list" do
 
-        #let!(:comments) { FactoryGirl.create_list(:comment, 5) }
         let!(:comments) { FactoryGirl.create_list(:comment, 5, :post => post) }
 
         before do
@@ -154,7 +152,7 @@ describe "Posts pages" do
             visit post_path post
             fill_in "Author", :with => "fhantoing"
             fill_in "Content", :with => "This article is very good, so complete!"
-            click_button "Post"
+            click_button "Public comment"
           end
 
           it "should put a new comment on the page" do
@@ -171,7 +169,7 @@ describe "Posts pages" do
 
           before do
             visit post_path post
-            click_button "Post"
+            click_button "Public comment"
           end
 
           it "should put an error message on the top" do
@@ -188,7 +186,7 @@ describe "Posts pages" do
             visit post_path post
             fill_in "Author", :with => "fhantoing"
             fill_in "Content", :with => "This article is very good, so complete"
-            click_button "Post"
+            click_button "Public comment"
           end
 
           it "should put a new comment on the page" do
@@ -201,6 +199,5 @@ describe "Posts pages" do
     end
 
   end
-
 end
 
