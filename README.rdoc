@@ -1,27 +1,24 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Classic Forum Application features:
 
-Things you may want to cover:
 
 * Ruby version
 
-* System dependencies
+  ruby 2.0.0p247
+
 
 * Configuration
 
-* Database creation
+  Rails 4.0.0
 
-* Database initialization
 
 * How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+    rake db:setup
+    rake db:test:prepare
+    rspec --format doc
 
-* Deployment instructions
-
-* ...
 
 
 Please feel free to use a different markup language if you do not plan to run
