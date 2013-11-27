@@ -15,6 +15,13 @@
 .post_content {
   margin-left: 10px;
   margin-bottom: 40px;
+  font-size:18px;
+  text-align:left;
+  color:cornflowerblue;
+}
+
+.post_content_border {
+  border: white 8px outset;
 }
 
 ol#comments_list

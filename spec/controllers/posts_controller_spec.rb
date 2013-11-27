@@ -1,5 +1,7 @@
 require 'spec_helper'
 
+=begin
+
 describe PostsController do
 
   describe "show" do
@@ -17,4 +19,6 @@ describe PostsController do
     end
   end
 end
+
+=end
 

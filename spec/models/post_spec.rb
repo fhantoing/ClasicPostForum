@@ -1,5 +1,7 @@
 require 'spec_helper'
 
+=begin
+
 describe Post do
 
   describe "returning X newer posts" do
@@ -18,4 +20,6 @@ describe Post do
     end
   end
 end
+
+=end
 

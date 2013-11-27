@@ -1,10 +1,17 @@
 = content_for :title do
   = @post.title
-%h2.post_title= @post.title
-%h6.post_title
-  by:#{@post.author}
-.post_content= @post.content
+
+.post_content_border
+  %h2.post_title= @post.title
+  %h6.post_title
+    by:#{@post.author}
+  .post_content= @post.content
+
 %ol#comments_list= render @post.comments
+
 %br/
-%h3.post_content Public an new comment
+
+%h3.post_title
+  Public an new comment
+
 = render 'comments/form'
