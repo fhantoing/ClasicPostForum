@@ -22,6 +22,14 @@
 
 .post_content_border {
   border: white 8px outset;
+  /*for Firefox*/
+  -moz-border-radius: 15px 15px 15px 15px ;
+  /*for Safari and Chrome*/
+  -webkit-border-radius: 15px 15px 15px 15px;
+  /*for Opera */
+  border-radius: 15px 15px 15px 15px;
+  /*for IE */
+  behavior:url(border.htc);
 }
 
 ol#comments_list
