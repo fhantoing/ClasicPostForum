@@ -7,19 +7,15 @@ Classic Forum Application features:
 
   ruby 2.0.0p247
 
-
 * Configuration
 
   Rails 4.0.0
-
 
 * How to run the test suite
 
     rake db:setup
     rake db:test:prepare
     rspec --format doc
-
-
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
